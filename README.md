@@ -15,7 +15,7 @@ The pswinpy package is distributed through PyPI as both egg, Windows and source.
 
 Basic Usage
 -----------
-To use this gem, you will need sign up for a Gateway account with PSWinCom. Demo account are available.
+To use this package, you will need sign up for a Gateway account with PSWinCom. Demo account are available.
 
 This piece of code demonstrates how to send a simple SMS message:
 
@@ -39,7 +39,7 @@ Properties currently supported are:
 
 Specifying Host
 ---------------
-The gem is set to use a particular PSWinCom SMS Gateway by default. The host can be changed globaly by setting api_host:
+The package is set to use a particular PSWinCom SMS Gateway by default. The host can be changed globaly by setting api_host:
 
     TODO
 
