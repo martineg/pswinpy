@@ -1,3 +1,4 @@
+from datetime import datetime
 
 class Request(object):
   
@@ -6,12 +7,14 @@ class Request(object):
     self.password = password
     self.messages = []
 
-  def addMessage(self, to, text, sender='', TTL='', tariff=''):
+  def addMessage(self, to, text, sender='', TTL='', tariff='', serviceCode='', deliveryTime=''):
     self.messages.append({'receiver': to, 
                           'text': text, 
                           'sender': sender,
                           'TTL': TTL,
-                          'tariff': tariff})
+                          'tariff': tariff,
+                          'serviceCode' : serviceCode,
+                          'deliveryTime': deliveryTime})
 
   def xml(self):
     return "<?xml version=\"1.0\"?>\r\n" + \
@@ -30,10 +33,17 @@ def xmlForSingleMessage(message):
            tag("RCV", message['receiver']) + \
            tag("SND", message['sender']) + \
            tag("TTL", message['TTL']) + \
-           tag("TARIFF", message['tariff']))
+           tag("TARIFF", message['tariff']) + \
+           tag("SERVICECODE", message['serviceCode']) + \
+           tag("DELIVERYTIME", message['deliveryTime']))
   
 def tag(tagName, content):
-  content = str(content)
-  if len(content):
+  if isinstance(content, datetime):
+    content = content.strftime('%Y%m%d%H%M')
+  else:
+    content = str(content)
+
+  if content:
     return "<" + tagName + ">" + content + "</" + tagName + ">"
+
   return ""
