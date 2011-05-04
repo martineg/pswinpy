@@ -16,13 +16,15 @@ class RequestTests(unittest.TestCase):
         "<?xml version=\"1.0\"?>\r\n" + \
         "<SESSION><CLIENT>user</CLIENT><PW>password</PW><MSGLST></MSGLST></SESSION>")
 
-  # TODO - Test single, minimum message
-  #
-  # "<?xml version=\"1.0\"?>\r\n" + \
-  #      "<SESSION><CLIENT>Bob</CLIENT><PW>123</PW><MSGLST>" + \
-  #      "<MSG><ID>1</ID><TEXT>A message</TEXT><RCV>12345678</RCV></MSG>" + \
-  #      "</MSGLST></SESSION>"
-  
+  def testXmlWithMinimumMessage(self):
+    r = Request("tom", "tomspasswd")
+    r.addMessage(12345678, "A simple message")
+    self.assertEqual(r.xml(), 
+        "<?xml version=\"1.0\"?>\r\n" + \
+        "<SESSION><CLIENT>tom</CLIENT><PW>tomspasswd</PW><MSGLST>" + \
+        "<MSG><ID>1</ID><TEXT>A simple message</TEXT><RCV>12345678</RCV></MSG>" + \
+        "</MSGLST></SESSION>")
+
   # TODO - Test single, complete message
   #
   # "<?xml version=\"1.0\"?>\r\n" + \
