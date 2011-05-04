@@ -6,8 +6,12 @@ class Request(object):
     self.password = password
     self.messages = []
 
-  def addMessage(self, to, text):
-    self.messages.append({'receiver': to, 'text': text})
+  def addMessage(self, to, text, sender='', TTL='', tariff=''):
+    self.messages.append({'receiver': to, 
+                          'text': text, 
+                          'sender': sender,
+                          'TTL': TTL,
+                          'tariff': tariff})
 
   def xml(self):
     return "<?xml version=\"1.0\"?>\r\n" + \
@@ -16,10 +20,20 @@ class Request(object):
 
   def messageListXml(self):
     return reduce(lambda x, y: x + y, 
-                  map(self.messageXml, self.messages), 
+                  map(xmlForSingleMessage, self.messages), 
                   "")
 
-  def messageXml(self, message):
-    return "<MSG><ID>1</ID><TEXT>%s</TEXT><RCV>%s</RCV></MSG>" \
-        % (message['text'], str(message['receiver']))
+def xmlForSingleMessage(message):
+  return tag("MSG", 
+           tag("ID", "1") + \
+           tag("TEXT", message['text']) + \
+           tag("RCV", message['receiver']) + \
+           tag("SND", message['sender']) + \
+           tag("TTL", message['TTL']) + \
+           tag("TARIFF", message['tariff']))
   
+def tag(tagName, content):
+  content = str(content)
+  if len(content):
+    return "<" + tagName + ">" + content + "</" + tagName + ">"
+  return ""

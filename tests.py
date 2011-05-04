@@ -25,6 +25,18 @@ class RequestTests(unittest.TestCase):
         "<MSG><ID>1</ID><TEXT>A simple message</TEXT><RCV>12345678</RCV></MSG>" + \
         "</MSGLST></SESSION>")
 
+  def testXmlWithCompleteMessage(self):
+    r = Request("tom", "tomspasswd")
+    r.addMessage(12345678, "A simple message", sender="Foo", TTL=4, tariff=500)
+    self.assertEqual(r.xml(), 
+        "<?xml version=\"1.0\"?>\r\n" + \
+        "<SESSION><CLIENT>tom</CLIENT><PW>tomspasswd</PW><MSGLST>" + \
+        "<MSG>" + \
+        "<ID>1</ID><TEXT>A simple message</TEXT><RCV>12345678</RCV>" + \
+        "<SND>Foo</SND><TTL>4</TTL><TARIFF>500</TARIFF>" + \
+        "</MSG>" + \
+        "</MSGLST></SESSION>")
+
   # TODO - Test single, complete message
   #
   # "<?xml version=\"1.0\"?>\r\n" + \
