@@ -6,7 +6,7 @@ A Python interface to the [PSWinCom SMS Gateway](http://pswin.com/english/produc
 Installation
 ------------
 
-The pswinpy package is distributed through PyPI as both egg, Windows and source. THIS IS NOT YET TRUE!!
+The pswinpy package is distributed through PyPI as both egg, Windows installer and source. [Download here](http://pypi.python.org/pypi/pswinpy/).
 
 Basic Usage
 -----------
