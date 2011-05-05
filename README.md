@@ -44,11 +44,11 @@ Modes
 -----
 For testing purposes the API provides a couple of modes you can set globally to control how the library works.
 
-   Mode.test = True
+    Mode.test = True
 
 .. will make you use the API without actually sending any messages.
 
-   Mode.debug = True
+    Mode.debug = True
 
 .. will make the API output debug information to standard out.
 
