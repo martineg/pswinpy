@@ -12,7 +12,7 @@ setup(
     description = "A package for sending SMS messages using the PSWinCom SMS Gateway.",
     license = "MIT License",
     keywords = "SMS",
-    url = "",
+    url = "https://github.com/tormaroe/pswinpy",
     packages = ['pswinpy'],
     long_description = read('README.md'),
     classifiers = [
