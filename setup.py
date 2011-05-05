@@ -16,7 +16,7 @@ setup(
     packages = ['pswinpy'],
     long_description = read('README.md'),
     classifiers = [
-      "Development Status :: 1 - Planning",
+      "Development Status :: 4 - Beta",
       "Programming Language :: Python",
       "Programming Language :: Python :: 3",
       "Intended Audience :: Developers",
