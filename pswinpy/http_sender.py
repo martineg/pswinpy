@@ -3,30 +3,29 @@ import httplib
 from pswinpy.mode import Mode
 
 class HttpSender(object):
-  host = 'gw2-fro.pswin.com:81'
+  apiHost = 'sms3.pswin.com'
+  apiUrl = '/sms'
 
-  def __init__(self):
-    pass
+  def __init__(self, host=apiHost, url=apiUrl):
+    self.host = host
+    self.url = url
 
   def send(self, request):
-    if not Mode.test:
+    if Mode.test:
+      return
       xml = request.xml()
-
-      if Mode.debug:
-        print "Request: ", xml
-
-      webservice = httplib.HTTP(HttpSender.host)
-      webservice.putrequest("POST", "/")
-      webservice.putheader("Content-type", "text/xml; charset=\"UTF-8\"")
-      webservice.putheader("Content-length", "%d" % len(xml))
-      webservice.endheaders()
-      webservice.send(xml)
-
-      if Mode.debug:
-        statuscode, statusmessage, header = webservice.getreply()
+    webservice = httplib.HTTP(self.host)
+    if Mode.debug:
+      webservice.set_debuglevel(3)
+    webservice.putrequest("POST", self.url)
+    webservice.putheader("Content-type", "text/xml; charset=\"UTF-8\"")
+    webservice.putheader("Content-length", "%d" % len(xml))
+    webservice.endheaders()
+    webservice.send(xml)
+    statuscode, statusmessage, header = webservice.getreply()
+    if Mode.debug:
         print "Response: ", statuscode, statusmessage
         print "headers: ", header
         res = webservice.getfile().read()
         print res
-    
-    
+    return statuscode
