@@ -36,9 +36,7 @@ Properties currently supported are:
 
 Specifying Host
 ---------------
-The package is set to use a particular PSWinCom SMS Gateway by default. The host can be changed globaly by setting the host class property on HttpSender:
-
-    HttpSender.host = "some.other.host.com"
+*Details in flux at the moment*
 
 Modes
 -----
