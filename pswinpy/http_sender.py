@@ -13,7 +13,7 @@ class HttpSender(object):
   def send(self, request):
     if Mode.test:
       return
-      xml = request.xml()
+    xml = request.xml()
     webservice = httplib.HTTP(self.host)
     if Mode.debug:
       webservice.set_debuglevel(3)
