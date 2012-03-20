@@ -18,7 +18,7 @@ class HttpSender(object):
     if Mode.debug:
       webservice.set_debuglevel(3)
     webservice.putrequest("POST", self.url)
-    webservice.putheader("Content-type", "text/xml; charset=\"UTF-8\"")
+    webservice.putheader("Content-type", "text/xml; charset=\"latin1\"")
     webservice.putheader("Content-length", "%d" % len(xml))
     webservice.endheaders()
     webservice.send(xml)
